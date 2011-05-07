@@ -7,8 +7,6 @@
   //}, function() {
   //  stopnotes();
   //});
-%h1#title
-
 :javascript
   // Creates canvas 320 × 200 at 10, 50
   var paper = Raphael(0, 0, 1280, 600);
@@ -41,15 +39,37 @@
     });
     var text = e.event_info;
     var desc = e.desc;
+    $('h2').hide();
     circle.hover(function() {
       stopnotes();
       stopnotes();
+      stopnotes();
+      stopnotes();
+      stopnotes();
       $('h1#title').text(desc);
+      $('h2').text(text);
       play_sequence(text.slice(0,16), text.slice(16,32));
     });
+    circle.mousedown(function() {
+      $('h2').fadeIn();
+      return false;
+    });
+    circle.mouseup(function() {
+      $('h2').fadeOut();
+      return false;
+    });
+    circle.click(function() {
+      return false;
+    });
+
   });
 
   $('body').click(function() {
+    stopnotes();
+    stopnotes();
+    stopnotes();
+    stopnotes();
+    stopnotes();
     stopnotes();
   });
   // Creates circle at x = 50, y = 40, with radius 10
