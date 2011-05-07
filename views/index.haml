@@ -50,11 +50,14 @@
       $('h2').text(text);
       play_sequence(text.slice(0,16), text.slice(16,32));
     });
+    var animx = Math.floor(Math.random()*50) - 25;
+    var animy = Math.floor(Math.random()*50) - 25;
+    circle.animate({cx: x+animx, cy: y+animy}, 20000);
     circle.mousedown(function() {
       $('h2').fadeIn();
       return false;
     });
-    circle.mouseup(function() {
+    $('body').mouseup(function() {
       $('h2').fadeOut();
       return false;
     });
