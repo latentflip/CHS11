@@ -28,12 +28,20 @@
     %link{:href => "/css/handheld.css?v=1", :media => "handheld", :rel => "stylesheet"}/
   / All JavaScript at the bottom, except for Modernizr which enables HTML5 elements &amp; feature detects
   %script{:src => "/js/libs/modernizr-1.6.min.js"}
+  %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"}
+  %script{:src => "/js/underscore-min.js"}
+  %script{:src => "/js/raphael-min.js"}
+  %script{:src => "js/muzak.js"}
+  %script{:src => "js/eventdata.js"}
+  <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
 %body
   #container.container_12
     %header.grid_12
     #main.grid_12
       = yield
     %footer.grid_12
+
+
   / ! end of #container
   / Javascript at the bottom for fast page loading
   / Grab Google CDN's jQuery. fall back to local if necessary

@@ -1,2 +1,68 @@
-%h1 Home
-%p I am at views/index.haml
+=#@event['event_info']
+:javascript
+  //var text = "#{@track1}";
+  //var text2 = "#{@track2}";
+  //$('body').toggle(function() {
+  //  play_sequence(events[0].event_info.slice(0,16), events[0].event_info.slice(16,32));
+  //}, function() {
+  //  stopnotes();
+  //});
+%h1#title
+
+:javascript
+  // Creates canvas 320 × 200 at 10, 50
+  var paper = Raphael(0, 0, 1280, 600);
+  var xs = _.map(events, function(i) { return i.event_latitude; });
+  var ys = _.map(events, function(i) { return i.event_longitude; });
+  
+  var maxx = _.max(xs);
+  var minx = _.min(xs);
+  var maxy = _.max(ys);
+  var miny = _.min(ys);
+
+  var avex = (maxx + minx)/2.0;
+  var avey = (maxy + miny)/2.0;
+  var rangex = maxx-minx;
+  var rangey = maxy-miny;
+
+  _.each(events, function(e,i) {
+    var x = 640+2*1280*(e.event_latitude - avex)/rangex;
+    var y = 400+1.5*800*(e.event_longitude - avey)/rangey;
+    //alert([x,y]);
+    //var x = 300 + 3.0*1280.0/rangex * (e.event_latitude - avex),
+    //    y = 400 + 800.0/rangey * (e.event_longitude - avey)
+    var r = Math.floor((e.price/100.0)*255);
+    var g = Math.floor((e.start_time/2359.0)*255);
+    var b = Math.floor(Math.random()*256)
+
+    var circle = paper.circle(x,y,20).attr({
+      fill: 'rgba('+r+','+g+','+b+',128)',
+      stroke: 'none'
+    });
+    var text = e.event_info;
+    var desc = e.desc;
+    circle.hover(function() {
+      stopnotes();
+      stopnotes();
+      $('h1#title').text(desc);
+      play_sequence(text.slice(0,16), text.slice(16,32));
+    });
+  });
+
+  $('body').click(function() {
+    stopnotes();
+  });
+  // Creates circle at x = 50, y = 40, with radius 10
+  //var circle = paper.circle(500, 40, 10);
+  //var circle2 = paper.circle(50, 400, 50);
+  //var circle3 = paper.circle(50, 40, 100);
+  // Sets the fill attribute of the circle to red (#f00)
+  //circle.attr("fill", "#f00");
+  //circle2.attr("fill", "rgba(255,255,0,0.1");
+  //circle3.attr("fill", "rgba(255,0,255,0.1");
+
+  //paper.circle(100, 100, 20).attr({
+  //    fill: "hsb(0.6, 1, 0.75)",
+  //    stroke: "red"
+  //});
+  

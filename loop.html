@@ -1,0 +1,144 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+  </head>
+
+</html>
+
+<body>
+
+
+<!--<audio id="audio_1" controls preload>
+  <source src="Samples/6.wav">
+</audio>
+<audio id="audio_2" controls preload>
+  <source src="Samples/8.wav">
+</audio>
+<audio id="audio_3" controls preload>
+  <source src="Samples/10.wav">
+</audio>
+<audio id="audio_4" controls preload>
+  <source src="Samples/12.wav">
+  </audio>-->
+
+<script type="text/javascript">
+  var notes = [];
+  var n = 16;
+  var steps = 16;
+  var step = (2.05/steps)*1000;
+
+  for(var i=0,ii=n; i<ii; i++) {
+    notes[i] = [];
+    for(var j=0,jj=steps;j<jj; j++) {
+      var audio = new Audio();
+      audio.src = "Samples/"+(i+1)+".wav";
+      audio.addEventListener('ended', function() {
+          this.currentTime = 0;
+          this.play();
+      }, false);
+      
+      notes[i][j] = audio;
+    }
+  }
+  var text  = "Hello my name is jim "
+  var text2 = "And this is my bassline"
+
+  var sequence = [];
+  for(var i=0,ii=16;i<ii;i++) {
+    sequence[i] = [];
+    if(text[i].match(/[A-z]/))
+      sequence[i].push(text.charCodeAt(i) % 7);
+    if(text2[i].match(/[A-z]/))
+      sequence[i].push((text2.charCodeAt(i) % 7) + 8);
+  }
+
+  var playnotes = function(pos) {
+    var length = sequence[pos].length;
+    for(var i=0,ii=length;i<ii;i++) {
+      var n=sequence[pos][i];
+      notes[n][pos].play();
+    }
+  };
+
+  setTimeout(function() {
+      playnotes(0);
+  }, 0);
+  setTimeout(function() {
+      playnotes(1);
+  }, 1*step);
+  setTimeout(function() {
+      playnotes(2);
+  }, 2*step);
+  setTimeout(function() {
+      playnotes(3);
+  }, 3*step);
+  setTimeout(function() {
+      playnotes(4);
+  }, 4*step);
+  setTimeout(function() {
+      playnotes(5);
+  }, 5*step);
+  setTimeout(function() {
+      playnotes(6);
+  }, 6*step);
+  setTimeout(function() {
+      playnotes(7);
+  }, 7*step);
+  setTimeout(function() {
+      playnotes(8);
+  }, 8*step);
+  setTimeout(function() {
+      playnotes(9);
+  }, 9*step);
+  setTimeout(function() {
+      playnotes(10);
+  }, 10*step);
+  setTimeout(function() {
+      playnotes(11);
+  }, 11*step);
+  setTimeout(function() {
+      playnotes(12);
+  }, 12*step);
+  setTimeout(function() {
+      playnotes(13);
+  }, 13*step);
+  setTimeout(function() {
+      playnotes(14);
+  }, 14*step);
+  setTimeout(function() {
+      playnotes(15);
+  }, 15*step);
+
+
+  //setTimeout(function() {
+  //  //notes[0][0].play();
+  //  //notes[3][0].play();
+  //  setTimeout(function() {
+  //    console.log('play1');
+  //    notes[0][0].play();
+
+  //  }, 0);
+
+  //  setTimeout(function() {
+  //    console.log('play2');
+  //    //notes[2][1].play();
+  //    notes[0][1].play();
+  //    //notes[3][1].play();
+  //    }, 10*step);
+  //  
+  //  setTimeout(function() {
+  //    console.log('play3');
+  //    notes[0][2].play();
+  //    //notes[2][2].play();
+  //    //notes[0][1].play();
+  //    //notes[3][1].play();
+  //    }, 2*step);
+
+  //  setTimeout(function() {
+  //    console.log('play4');
+  //    notes[0][3].play();
+  //    //notes[3][1].play();
+  //    }, 3*step);
+  //}, 2000);
+  </script>
+</body>
