@@ -4,6 +4,7 @@ gem "haml", ">=3.1.1"
 gem "sass", ">=3.1.1"
 gem "datamapper", ">=1.1.0"
 gem "crack"
+gem 'heroku'
 
 group :development do
 	gem "dm-sqlite-adapter", ">=1.1.0"
